@@ -7,20 +7,17 @@ let express = require('express'),
   
 let routes = require('./api/routes/todoListRoutes');
 
-
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://mongo:27017'); 
-
+mongoose.connect('mongodb://localhost:27017'); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+routes(app); 
+app.listen(port);
+
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found.'})
   });
-
-
-routes(app); 
-app.listen(port);
 
 console.log('Server running on port: ' + port);
