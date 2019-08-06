@@ -10,4 +10,5 @@ services:
     image: mongo
     ports:
     - "27017:27017"
-    # data does NOT persist in this example; add volumes to remedy this 
+    volumes:
+    - ./data:/data/db
